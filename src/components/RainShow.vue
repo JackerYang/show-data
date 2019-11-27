@@ -91,7 +91,7 @@
             normal: {
               // 定制显示（按顺序）
               color: params => {
-                let colorList = ["#FFCA29", "#FF4B8A", "#805BCE", "#EE9201", "#29AAE3", "#B74AE5", "#0AAF9F", "#E89589", "#16A085", "#4A235A", "#C39BD3 ", "#F9E79F", "#BA4A00", "#ECF0F1", "#616A6B", "#EAF2F8", "#4A235A", "#3498DB"];
+                let colorList = ["#FFCA29", "#FF4B8A", "#805BCE", "#EE9201", "#1CC840", "#43BBFB", "#0AAF9F", "#E89589", "#16A085", "#4A235A", "#C39BD3 ", "#F9E79F", "#BA4A00", "#ECF0F1", "#616A6B", "#EAF2F8", "#4A235A", "#3498DB"];
                 return colorList[params.dataIndex];
               }
             }

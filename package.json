@@ -18,6 +18,7 @@
     "echarts": "^4.5.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "vue-count-to": "^1.0.13",
     "vue-template-compiler": "^2.6.10"
   },
   "postcss": {

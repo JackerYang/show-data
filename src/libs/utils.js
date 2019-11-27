@@ -12,7 +12,7 @@ export const getTime = (time = new Date()) => {
     h = _s.getHours(),
     m = _s.getMinutes(),
     s = _s.getSeconds();
-  return `${Y}-${_f(M)}-${_f(D)} ${_f(h)}:${_f(m)}:${_f(s)}`;
+  return `${Y}年${_f(M)}月${_f(D)}日 ${_f(h)}:${_f(m)}:${_f(s)}`;
 };
 
 /**

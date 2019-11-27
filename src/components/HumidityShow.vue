@@ -7,6 +7,7 @@
 
 <script>
   import ItemTitle from "./common/ItemTitle";
+  import { getTime } from "../libs/utils";
 
   const EC = require("echarts/lib/echarts");
   require("echarts/lib/chart/line");
@@ -93,11 +94,7 @@
       this.humChar.setOption(option);
       this.timer = setInterval(() => {
         let num = Math.random() * 100;
-        let date = new Date();
-        let time = date.getHours();
-        let min = date.getMinutes();
-        let sec = date.getSeconds();
-        let timeRes = (time < 10 ? "0" + time : time) + ":" + (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+        let timeRes = getTime().split(" ")[1];
         this.dataArr.shift();
         this.timeArr.shift();
         this.dataArr.push(Math.floor(num));

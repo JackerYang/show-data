@@ -17,9 +17,10 @@
     <div class="center">
       <div class="info">
         <home-info></home-info>
+        <home-show></home-show>
       </div>
       <div class="show">
-
+        <map-show></map-show>
       </div>
     </div>
     <div class="side">
@@ -47,6 +48,8 @@
   import RainShow from "../components/RainShow";
   import SaleList from "../components/SaleList";
   import HomeInfo from "../components/HomeInfo";
+  import HomeShow from "../components/HomeShow";
+  import MapShow from "../components/MapShow";
 
   export default {
     name: "Home",
@@ -57,7 +60,9 @@
       ExamShow,
       RainShow,
       SaleList,
-      HomeInfo
+      HomeInfo,
+      HomeShow,
+      MapShow
     },
     computed: {
       exmChar() {
@@ -74,6 +79,12 @@
       },
       traChar() {
         return this.$store.state.traChar;
+      },
+      homChar() {
+        return this.$store.state.homChar;
+      },
+      mapChar() {
+        return this.$store.state.mapChar;
       }
     },
     mounted() {
@@ -83,7 +94,12 @@
         this.temChar.resize();
         this.humChar.resize();
         this.traChar.resize();
+        this.homChar.resize();
+        this.mapChar.resize();
       };
+    },
+    created() {
+      this.$store.dispatch("connectWebsocket");
     }
   };
 </script>
