@@ -572,7 +572,16 @@
           }
         },
         tooltip: {
-          trigger: "item"
+          trigger: "item",
+          formatter: item => {
+            let res = "";
+            if (item.value && item.value[2]) {
+              res = `${item.name}: ${item.value[2]} 次`;
+            } else {
+              res = "";
+            }
+            return res;
+          }
         },
         legend: {
           orient: "vertical",

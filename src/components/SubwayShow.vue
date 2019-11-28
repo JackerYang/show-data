@@ -1,7 +1,7 @@
 <template>
-  <div class="travel-show">
-    <item-title title="出行占比"></item-title>
-    <div id="tra-char"></div>
+  <div class="subway-show">
+    <item-title title="地铁人数占比"></item-title>
+    <div id="exa-char"></div>
   </div>
 </template>
 
@@ -14,27 +14,27 @@
   require("echarts/lib/component/legend");
 
   export default {
-    name: "TravelShow",
+    name: "ExamShow",
     components: {
       ItemTitle
     },
     computed: {
-      traChar() {
-        return this.$store.state.traChar;
+      subChar() {
+        return this.$store.state.subChar;
       },
-      traData() {
-        return this.$store.state.traData;
+      subData() {
+        return this.$store.state.subData;
       }
     },
     watch: {
-      traData: {
+      subData: {
         deep: true,
         handler: function (newVal) {
           let { value } = newVal;
           this.option.series.data.forEach(item => {
             item.value += value;
           });
-          this.traChar.setOption(this.option);
+          this.subChar.setOption(this.option);
         }
       }
     },
@@ -51,20 +51,20 @@
               color: "#999"  // 图例文字颜色
             },
             // itemGap设置各个item之间的间隔，单位px，默认为10，横向布局时为水平间隔，纵向布局时为纵向间隔
-            itemGap: 30,
-            data: ["公交", "单车", "驾车"]
+            itemGap: 20,
+            data: ["5号线", "10号线", "15号线", "1号线"]
           },
-          color: ["#FFCA29", "#FF4B8A", "#805BCE"],
+          color: ["#805BCE", "#FFCA29", "#43BBFB", "#FF4B8A"],
           series: {
-            name: "出行方式",
+            name: "地铁人数",
             type: "pie",
-            // radius: '50%',  // 设置饼状图大小，100%时，最大直径=整个图形的min(宽，高)
-            radius: ["30%", "60%"],  // 设置环形饼状图， 第一个百分数设置内圈大小，第二个百分数设置外圈大小
+            radius: "60%",  // 设置环形饼状图， 第一个百分数设置内圈大小，第二个百分数设置外圈大小
             center: ["50%", "40%"],  // 设置饼状图位置，第一个百分数调水平位置，第二个百分数调垂直位置
             data: [
-              { value: 335, name: "公交" },
-              { value: 310, name: "单车" },
-              { value: 234, name: "驾车" }
+              { value: 545, name: "5号线" },
+              { value: 454, name: "10号线" },
+              { value: 246, name: "15号线" },
+              { value: 654, name: "1号线" }
             ],
             // itemStyle 设置饼状图扇形区域样式
             itemStyle: {
@@ -93,17 +93,17 @@
       };
     },
     mounted() {
-      this.$store.commit("SET_TRA_CHAR", EC.init(document.getElementById("tra-char"), {}));
-      this.traChar.setOption(this.option);
+      this.$store.commit("SET_SUB_CHAR", EC.init(document.getElementById("exa-char"), {}));
+      this.subChar.setOption(this.option);
     }
   };
 </script>
 
 <style lang="less" scoped>
-  .travel-show {
+  .subway-show {
     width: 100%;
     height: 100%;
-    #tra-char {
+    #exa-char {
       width: 100%;
       height: ~"calc(100% - 50px)";
     }

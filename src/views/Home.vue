@@ -29,12 +29,12 @@
         <humidity-show></humidity-show>
       </div>
       <div class="item">
-        <!--考试合格-->
-        <exam-show></exam-show>
+        <!--地铁-->
+        <subway-show></subway-show>
       </div>
       <div class="item">
-        <!--实时销量-->
-        <sale-list></sale-list>
+        <!--降雨量-->
+        <rain-list></rain-list>
       </div>
     </div>
   </div>
@@ -44,9 +44,9 @@
   import TemperatureShow from "../components/TemperatureShow";
   import HumidityShow from "../components/HumidityShow";
   import TravelShow from "../components/TravelShow";
-  import ExamShow from "../components/ExamShow";
+  import SubwayShow from "../components/SubwayShow";
   import RainShow from "../components/RainShow";
-  import SaleList from "../components/SaleList";
+  import RainList from "../components/RainList";
   import HomeInfo from "../components/HomeInfo";
   import HomeShow from "../components/HomeShow";
   import MapShow from "../components/MapShow";
@@ -57,16 +57,16 @@
       TemperatureShow,
       HumidityShow,
       TravelShow,
-      ExamShow,
+      SubwayShow,
       RainShow,
-      SaleList,
+      RainList,
       HomeInfo,
       HomeShow,
       MapShow
     },
     computed: {
-      exmChar() {
-        return this.$store.state.exmChar;
+      subChar() {
+        return this.$store.state.subChar;
       },
       raiChar() {
         return this.$store.state.raiChar;
@@ -89,7 +89,7 @@
     },
     mounted() {
       window.onresize = () => {
-        this.exmChar.resize();
+        this.subChar.resize();
         this.raiChar.resize();
         this.temChar.resize();
         this.humChar.resize();
@@ -99,7 +99,7 @@
       };
     },
     created() {
-      this.$store.dispatch("connectWebsocket");
+      this.$store.dispatch("init_websocket");
     }
   };
 </script>

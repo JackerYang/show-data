@@ -1,6 +1,6 @@
 <template>
   <div class="temperature-show">
-    <item-title :title="'空气温度（ '+ currentTem +'°C ）  < ' + (wsState ? 'websocket数据' : 'websocket未连接') + ' >'" />
+    <item-title :title="'空气温度（ '+ currentTem +'°C ）'" />
     <div id="tem-char" ref="tem-char"></div>
   </div>
 </template>
@@ -23,19 +23,16 @@
       },
       temData() {
         return this.$store.state.temData;
-      },
-      wsState() {
-        return this.$store.state.wsState;
       }
     },
     watch: {
       temData: {
         deep: true,
         handler: function (newVal) {
-          let { temperature, time } = newVal;
-          this.currentTem = temperature;
+          let { value, time } = newVal;
+          this.currentTem = value;
           this.option.series.data.shift();
-          this.option.series.data.push(temperature);
+          this.option.series.data.push(value);
           this.option.xAxis.data.shift();
           this.option.xAxis.data.push(time);
           this.temChar.setOption(this.option);

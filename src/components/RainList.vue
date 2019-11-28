@@ -1,11 +1,11 @@
 <template>
-  <div class="sale-list">
-    <item-title title="实时销量排行"></item-title>
+  <div class="rain-list">
+    <item-title title="城市降雨量排行"></item-title>
     <div class="box">
       <div class="title layout">
         <span>排行</span>
-        <span>商品</span>
-        <span>销量 ( 件 )</span>
+        <span>城市</span>
+        <span>降雨量(mm)</span>
       </div>
       <div class="items">
         <div v-for="(item, index) in lists" :key="item.product" class="item layout">
@@ -26,60 +26,67 @@
     components: {
       ItemTitle
     },
+    computed: {
+      lisData() {
+        return this.$store.state.lisData;
+      }
+    },
+    watch: {
+      lisData: {
+        deep: true,
+        handler: function () {
+          this.lists.forEach(item => {
+            item.number += Math.round(Math.random() * 10);
+          });
+          this.lists.sort((a, b) => {
+            return b.number - a.number;
+          });
+        }
+      }
+    },
     data() {
       return {
         lists: [
           {
-            product: "扫地机器人",
-            number: 12394
+            product: "北京",
+            number: 99
           },
           {
-            product: "华为Mate30",
-            number: 12394
+            product: "上海",
+            number: 120
           },
           {
-            product: "小零食",
-            number: 12394
+            product: "广州",
+            number: 12
           },
           {
-            product: "小米路由器",
-            number: 12394
+            product: "深圳",
+            number: 23
           },
           {
-            product: "西装",
-            number: 12394
+            product: "杭州",
+            number: 45
           },
           {
-            product: "三只松鼠",
-            number: 12394
+            product: "厦门",
+            number: 54
           },
           {
-            product: "Mac笔记本",
-            number: 12394
+            product: "青岛",
+            number: 65
           },
           {
-            product: "平板",
-            number: 12394
-          },
-        ],
-        timer: null
+            product: "成都",
+            number: 75
+          }
+        ]
       };
-    },
-    mounted() {
-      this.timer = setInterval(() => {
-        this.lists.forEach(item => {
-          item.number += Math.round(Math.random() * 10);
-        });
-        this.lists.sort((a, b) => {
-          return b.number - a.number;
-        });
-      }, 2000);
     }
   };
 </script>
 
 <style lang="less" scoped>
-  .sale-list {
+  .rain-list {
     width: 100%;
     height: 100%;
     .box {
